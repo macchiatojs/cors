@@ -1,6 +1,6 @@
 {
   "name": "@macchiatojs/cors",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Cross-Origin Resource Sharing (CORS) for Macchiato.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -37,17 +37,18 @@
     "email": "imed-jaberi@outlook.com",
     "url": "https://www.3imed-jaberi.com"
   },
-  "dependencies": {},
+  "peerDependencies": {
+    "@macchiatojs/kernel": "^0.1.0"
+  },
   "devDependencies": {
-    "@types/chai": "^4.2.18",
+    "@macchiatojs/kernel": "^0.1.0",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.6.1",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
-    "chai": "^4.3.4",
     "eslint": "^7.27.0",
-    "mocha": "^8.4.0",
+    "mocha": "^9.0.2",
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
     "supertest": "^6.1.3",
