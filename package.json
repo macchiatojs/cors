@@ -1,7 +1,7 @@
 {
-  "name": "@grandjs/router",
+  "name": "@macchiatojs/cors",
   "version": "0.0.0",
-  "description": "Expressive elegant modern amiable Router for Grand.js ⚡.",
+  "description": "Cross-Origin Resource Sharing (CORS) for Macchiato.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -23,20 +23,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grandjs/router.git"
+    "url": "git+https://github.com/macchiatojs/cors.git"
   },
   "keywords": [
-    "grandjs",
-    "router",
-    "grandjs-router",
-    "isomorphic-router",
-    "trouter",
-    "route",
-    "http",
-    "server",
-    "isomorphic",
-    "fast",
-    "crazy"
+    "macchiato",
+    "macchiatojs",
+    "cors",
+    "middleware"
   ],
   "license": "MIT",
   "author": {
@@ -44,10 +37,7 @@
     "email": "imed-jaberi@outlook.com",
     "url": "https://www.3imed-jaberi.com"
   },
-  "dependencies": {
-    "trouter": "^3.2.0",
-    "hashlru": "^2.3.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.2.18",
     "@types/mocha": "^8.2.2",
@@ -68,7 +58,7 @@
     "node": ">= 14"
   },
   "bugs": {
-    "url": "https://github.com/grandjs/router/issues"
+    "url": "https://github.com/macchiatojs/cors/issues"
   },
-  "homepage": "https://github.com/grandjs/router#readme"
+  "homepage": "https://github.com/macchiatojs/cors#readme"
 }

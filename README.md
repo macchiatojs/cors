@@ -1,3 +1,3 @@
-# @grandjs/jsx
+# @macchiatojs/cors
 
-### Grand.js way to use jsx as template engine.
+### Cross-Origin Resource Sharing (CORS) for Macchiato.js
