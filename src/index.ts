@@ -1,14 +1,14 @@
-import { Request, Response, Next, Context } from '@macchiatojs/kernel'
+import type { Context, Request, Response, Next, MacchiatoHandler } from '@macchiatojs/kernel'
 
 /**
  * @type 
  */
-export interface CorsOptions { 
+export interface CorsOptions {
   expressify?: boolean,
-  origins?: string|string[],
-  allowMethods?: string|string[],
-  allowHeaders?: string|string[],
-  exposeHeaders?: string|string[],
+  origins?: string | string[],
+  allowMethods?: string | string[],
+  allowHeaders?: string | string[],
+  exposeHeaders?: string | string[],
   credentials?: boolean,
   maxAge?: number
 }
@@ -34,26 +34,27 @@ const defaultOptions: CorsOptions = {
  * @return {Function} cors middleware
  * @api public
  */
-function cors (options?: CorsOptions) {
+function cors (options?: CorsOptions): MacchiatoHandler {
   options = { ...defaultOptions, ...options }
-  // eslint-disable-next-line prefer-const
-  let { expressify, credentials, origins, allowMethods, maxAge, allowHeaders, exposeHeaders } = options
-  
+  const { expressify, origins, maxAge } = options
+  let { credentials, allowMethods, allowHeaders, exposeHeaders } = options
+
   if (Array.isArray(exposeHeaders)) exposeHeaders = exposeHeaders.join(',')
   if (Array.isArray(allowMethods)) allowMethods = allowMethods.join(',')
   if (Array.isArray(allowHeaders)) allowHeaders = allowHeaders.join(',')
   credentials = !!credentials
 
-  async function main (request: Request, response: Response, next: Next) {
+  async function main(request: Request, response: Response, next: Next): Promise<unknown> {
     const requestOrigin = request.get('Origin')
-    
+
     // early out when we don't find origin
+    /* istanbul ignore next */
     if (!requestOrigin || requestOrigin.length === 0) return await next()
-    const origin = origins ?? requestOrigin 
+    const origin = origins ?? requestOrigin
 
     // Always set vary header
     response.vary('Origin')
-    
+
     response.set('Access-Control-Allow-Origin', origin)
     if (credentials) response.set('Access-Control-Allow-Credentials', 'true')
 
@@ -62,19 +63,19 @@ function cors (options?: CorsOptions) {
       if (exposeHeaders) response.set('Access-Control-Expose-Headers', exposeHeaders)
       return next()
     }
-    
+
     // Preflight Request
     if (allowMethods) response.set('Access-Control-Allow-Methods', allowMethods)
-    if (!allowHeaders) allowHeaders = request.get('Access-Control-Request-Headers')    
-    if (allowHeaders) response.set('Access-Control-Allow-Headers', allowHeaders)    
-    if (maxAge && maxAge > 0)  response.set('Access-Control-Max-Age', String(maxAge))
+    if (!allowHeaders) allowHeaders = request.get('Access-Control-Request-Headers')
+    if (allowHeaders) response.set('Access-Control-Allow-Headers', allowHeaders)
+    if (maxAge && maxAge > 0) response.set('Access-Control-Max-Age', String(maxAge))
     response.send(204, '')
   }
 
   return (
-    expressify 
-      ? (request: Request, response: Response, next: Next) => main (request, response, next)
-      : (context: Context, next: Next) => main (context.request, context.response, next)  
+    expressify
+      ? (request: Request, response: Response, next: Next) => main(request, response, next)
+      : (context: Context, next: Next) => main(context.request, context.response, next)
   )
 
 }
