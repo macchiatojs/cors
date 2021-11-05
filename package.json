@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "pretest": "rimraf dist",
+    "pretest": "rimraf dist tsconfig.ts*",
     "test": "mocha --exit",
     "build": "tsc -d",
     "precoverage": "rimraf coverage .nyc_output",
