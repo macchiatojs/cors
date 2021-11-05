@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+### v0.3.0 (6 Nov 2021)
+
+- update @macchiatojs/kernel to v0.19.0.
+- fix CI.
+
 ### v0.2.0 (4 Nov 2021)
 
 - improve types.
@@ -9,4 +14,4 @@
 
 ### v0.1.0 (20 Jul 2021)
 
-- initial release
+- initial release.
